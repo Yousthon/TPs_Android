@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("Lifecycle", "onRestart method");
     }
 
-    @Override
+    @Override // Que pour les methodes a redefinir
     protected void onPause() {
         super.onPause();
         Log.i("Lifecycle", "onPause method");
