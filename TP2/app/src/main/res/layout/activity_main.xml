@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    tools:context=".MainActivity"
+    tools:ignore="RtlCompat">
+
+
+    <LinearLayout
+        android:id="@+id/myLinearMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/T_Nom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:autofillHints=""
+                android:ems="5"
+                android:hint="@string/TextNom"
+                android:inputType="textPersonName"
+                tools:targetApi="o" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/T_Prenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:autofillHints=""
+                android:ems="5"
+                android:hint="@string/TextPrenom"
+                android:inputType="textPersonName"
+                tools:targetApi="o" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/T_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:ems="5"
+                android:hint="@string/TextDateNaiss"
+                android:inputType="text"
+                android:focusable="false"
+                android:onClick="datePicker"
+                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textVilleNaiss"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="5"
+                android:text="@string/TextVilleNaiss"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:id="@+id/SpinnerVilleNaiss"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:ems="10"
+                android:entries="@array/villeNaiss"
+                android:prompt="@string/TextVilleNaiss"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textDepartement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="5"
+                android:text="@string/TextDepartement"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:id="@+id/SpinnerDepartement"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:ems="10"
+                android:entries="@array/departements"
+                android:prompt="@string/TextDepartement"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAddNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="ajouterNumero"
+                android:text="@string/btnAddNumberText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnValidate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/BtnValidateText" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
