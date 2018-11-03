@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TP 2-1 </string>
+    <string name="BtnCompteurText">0 Clic</string>
+    <string name="reset_action">Redemarrer Compteur</string>
+</resources>
+
+
+

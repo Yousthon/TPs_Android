@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">TP 2-2</string>
+    <string name="TextNom">Nom</string>
+    <string name="TextPrenom">Prénom(s)</string>
+    <string name="TextDateNaiss">Date de Naissance</string>
+    <string name="TextVilleNaiss">Ville de Naissance</string>
+    <string name="TextBtnValider">Validate</string>
+    <string name="reset_action">Remise à zero</string>
+    <string name="TextDepartement">Departement</string>
+    <string name="BtnValidateText">Validate</string>
+    <string name="btnAddNumberText">Add Phone Number</string>
+        <string name="TextNumber">Numéro de Tel</string>
+    <string name="btnDeleteName">Supprimer Numero</string>
+
+    <string-array name="villeNaiss">
+        <item>Brest</item>
+        <item>Paris</item>
+        <item>Man</item>
+        <item>Strasbourg</item>
+        <item>Nancy</item>
+        <item>Lyon</item>
+    </string-array>
+
+    <string-array name="departements">
+        <item>Côte d\'Armor</item>
+        <item>Finistère</item>
+        <item>Ille et Vilaine</item>
+        <item>Morbihan</item>
+    </string-array>
+
+</resources>
+
+
+

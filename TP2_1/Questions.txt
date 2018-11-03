@@ -1,0 +1,34 @@
+Questions.
+Que se passe’il avec les valeurs que vous avez donné aux différents champs ? 
+- Elles sont effacées à chaque fois.
+
+Et si vous appuyez sur le bouton back ?
+- Pareil 
+
+ Quelle est la suite d’appels aux méthodes de callback dans les deux cas ?
+
+- Suite d'appels dans le premier cas
+11-03 01:24:27.669 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onPause method
+11-03 01:24:27.689 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onStop method
+11-03 01:24:27.689 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onDestroy method
+11-03 01:24:27.954 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: methode onCreate
+11-03 01:24:27.989 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onStart method
+
+- Suite d'appels dans le second cas
+11-03 01:24:35.904 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onPause method
+11-03 01:24:35.904 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onStop method
+11-03 01:24:35.904 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onDestroy method
+
+Application de comptage
+Que se passe-t’il lorsque vous faites une rotation de l’écran ? Qu’en concluez vous ?
+- Le comptage ne redémarre pas.
+- C'est lorsque l'on ferme totalement l'application que le comptage redémarre.
+
+Question. Dans quel cas précis d’actions de l’utilisateur l’appel à cette méthode peut être utile ?
+- Quand l'activité est recréée ! 
+
+Exercice
+Modifiez le code de l’activité Android qui compte (et affiche) le nombre de clicks à l’écran pour que le comptage soit correcte même s’il y a rotation de l’écran du dispositif.
+Maintenant au lieu de faire la rotation de l’écran appuyez sur le bouton back du dispositif (ou de l’émulateur).
+Question. Que se passe’il avec le compteur ? Qu’en concluez vous ?
+- Le code gère cette partie automatiquement

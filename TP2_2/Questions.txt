@@ -1,0 +1,22 @@
+Questions.
+
+Que se passe’il avec les valeurs que vous avez donné aux différents champs ? 
+
+- Elles sont effacées à chaque fois 
+
+Et si vous appuyez sur le bouton back ?
+- Pareil 
+
+ Quelle est la suite d’appels aux méthodes de callback dans les deux cas ?
+
+- Suite d'appels dans le premier cas
+11-03 01:24:27.669 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onPause method
+11-03 01:24:27.689 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onStop method
+11-03 01:24:27.689 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onDestroy method
+11-03 01:24:27.954 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: methode onCreate
+11-03 01:24:27.989 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onStart method
+
+- Suite d'appels dans le second cas
+11-03 01:24:35.904 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onPause method
+11-03 01:24:35.904 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onStop method
+11-03 01:24:35.904 19992-19992/com.example.imt_atlantique.tp1final I/Lifecycle: onDestroy method

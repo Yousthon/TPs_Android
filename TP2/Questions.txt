@@ -1,2 +1,0 @@
-- Fichier modifié : Build.gradle (module App)
-- Btns ajoutésqui se supremient à la rotation de l'écran
