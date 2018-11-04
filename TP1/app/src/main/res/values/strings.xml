@@ -8,9 +8,9 @@
     <string name="reset_action">Remise à zero</string>
     <string name="TextDepartement">Departement</string>
     <string name="BtnValidateText">Validate</string>
-    <string name="btnAddNumberText">Add Phone Number</string>
+    <string name="btnAddNumberText">Ajouter Votre Numero</string>
         <string name="TextNumber">Numéro de Tel</string>
-    <string name="btnDeleteName">Supprimer Numero</string>
+    <string name="btnDeleteName">Supprimer Votre Numero : </string>
 
     <string-array name="villeNaiss">
         <item>Brest</item>

@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -28,9 +29,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import java.io.File;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 
 //endregion
@@ -43,13 +47,9 @@ public class MainActivity extends AppCompatActivity
 
     //region  Recuperation des champs dans des variables globales
 
-    //Numeros des éléemnts sélectionés dans les Spinners
-    private static int  I_NumVille =0, I_NumDepartement=0;
     //Nbre de fois utilisation application
-    private static int I_Nbre=0;
-    private static int I_val=0 ,I_position=0;
-    private static String S_nom="", S_prenoms="", S_dateNaiss="";
-
+    private static int I_Nbre=0, I_val=0;
+    private List<String> L_numPhone;
 
     // Spinner pour les villes de naissance
     private static Spinner spVilleNaiss, spDepartement;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
     private static EditText T_nom;
     private static EditText T_prenom;
     private static EditText T_DateNaiss;
-    private static Button B_Valider;
+    private static Button B_Valider, B_Supprimer, B_AddNumber;
     private static LinearLayout layoutmain, l, layoutbtn;
 
     //endregion
@@ -69,10 +69,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.i("Lifecycle", "methode onCreate");
-
-        Context context = this;
-
         //region  Recuperation des champs dans des variables globales
         // Spinner pour les villes et departements de naissance
         spDepartement = (Spinner) findViewById(R.id.SpinnerDepartement);
@@ -82,39 +78,79 @@ public class MainActivity extends AppCompatActivity
         T_prenom = findViewById(R.id.T_Prenom);
         T_DateNaiss = findViewById(R.id.T_Date);
         B_Valider = findViewById(R.id.btnValidate);
+        B_AddNumber = findViewById(R.id.btnAddNumber);
+
 
         //Restauration des valeurs
         if (savedInstanceState == null) {
             SharedPreferences preferences = getSharedPreferences("DATA_SAVED", MODE_PRIVATE);
-            S_nom = preferences.getString("nom", "");
-            S_prenoms = preferences.getString("prenoms", "");
-            S_dateNaiss = preferences.getString("date_naiss", "");
-            I_NumVille = preferences.getInt("ville_naiss", 0);
-            I_NumDepartement = preferences.getInt("departement", 0);
-            I_Nbre = preferences.getInt("nbreUseAppli", 0);
-        }
+            Log.i("Lifecycle", "methode onCreate prob");
 
-        if (I_Nbre>0){
-            spDepartement.setSelection(I_NumDepartement);
-            spVilleNaiss.setSelection(I_NumVille);
-            T_nom.setText(S_nom);
-            T_prenom.setText(S_prenoms);
-            T_DateNaiss.setText(S_dateNaiss);
+            I_Nbre = preferences.getInt("Nombre_Champ_Tel", 0);
+            I_val = I_Nbre;
 
-            //reste les numéros
-        }
+            layoutmain = findViewById(R.id.myLinearMain);
+            int childCountnew = layoutmain.getChildCount();
 
-            B_Valider.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // Toast.makeText(getApplicationContext(), T_Show, Toast.LENGTH_LONG).show();
+            for (int i = 0; i < childCountnew; i++) {
+                ViewGroup v = (ViewGroup) layoutmain.getChildAt(i);
+                int nbrElem = v.getChildCount();
 
-                    Snackbar.make(findViewById(R.id.myRelativeLayout), "Vous êtes " + T_nom.getText().toString() +
-                            " " + T_prenom.getText().toString() + " né le " + T_DateNaiss.getText().toString()
-                            + " à " + spVilleNaiss.getSelectedItem().toString() + " dans le departement de "
-                            + spDepartement.getSelectedItem().toString(), Snackbar.LENGTH_LONG).show();
+                for (int j = 0; j < nbrElem; j++)  {
+                    View v1 =  v.getChildAt(j);
+
+                    //Cas EditText
+                    if (v1 instanceof EditText) {
+                        EditText Txt = (EditText) v1;
+                        switch (Txt.getId()){
+                            case R.id.T_Nom :
+                                Txt.setText(preferences.getString(String.valueOf(R.string.TextNom), ""));
+                                break;
+                            case R.id.T_Prenom :
+                                Txt.setText(preferences.getString(String.valueOf(R.string.TextPrenom), ""));
+                                break;
+                            //La date
+                            default :
+                                Txt.setText(preferences.getString(String.valueOf(R.string.TextDateNaiss), ""));
+                                break;
+                        }
+                    }
+                    //Cas Spinner
+                    else if (v1 instanceof Spinner){
+                        Spinner Sp = (Spinner) v1;
+                        if (Sp.getId() == R.id.SpinnerVilleNaiss){
+                            //Spinner departement
+                            Sp.setSelection(preferences.getInt(String.valueOf(R.string.TextVilleNaiss), 0));
+                        }
+                        Sp.setSelection(preferences.getInt(String.valueOf(R.string.TextDepartement), 0));
+                    }
                 }
-            });
+            }
+
+            //Ajout des numéros
+            while (I_val > 0){
+                addNumero(preferences.getString(String.valueOf(I_val),""));
+                I_val--;
+            }
         }
+
+        B_Valider.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Toast.makeText(getApplicationContext(), T_Show, Toast.LENGTH_LONG).show();
+
+                Snackbar.make(findViewById(R.id.myRelativeLayout), "Vous êtes " + T_nom.getText().toString() +
+                        " " + T_prenom.getText().toString() + " né le " + T_DateNaiss.getText().toString()
+                        + " à " + spVilleNaiss.getSelectedItem().toString() + " dans le departement de "
+                        + spDepartement.getSelectedItem().toString(), Snackbar.LENGTH_LONG).show();
+            }
+        });
+
+        B_AddNumber.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                addNumero("");
+                }
+        });
+    }
 
     //endregion
 
@@ -150,12 +186,11 @@ public class MainActivity extends AppCompatActivity
 
     // endregion
 
+    //region  Methode Ajout dynamique de numero
 
-    //region  Ajout dynamique de numero
-    public void ajouterNumero(View view) {
+    public void addNumero(String text){
 
         // Ajout du champ contenant le num de Tel
-
         layoutmain = findViewById(R.id.myLinearMain);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -169,12 +204,15 @@ public class MainActivity extends AppCompatActivity
         l.setLayoutParams(params);
         EditText number = new EditText (this);
         number.setHint(getString(R.string.TextNumber));
+        number.setText(text);
         number.setInputType(InputType.TYPE_CLASS_NUMBER);
         // maxLength = 13
         number.setFilters(new InputFilter[]{new InputFilter.LengthFilter(13)});
         l.addView(number);
         int childCount1 = layoutmain.getChildCount();
         layoutmain.addView(l,childCount1-2);
+        // incrémente le nombre de champs Tel
+        I_Nbre++;
 
         // Suppression
         layoutbtn = (LinearLayout) findViewById(R.id.numberNew);
@@ -197,33 +235,32 @@ public class MainActivity extends AppCompatActivity
             deleteBtn.setLayoutParams(params);
         }
 
-        final Button B_Supprimer = (Button) findViewById(R.id.reservedNamedId);
+        B_Supprimer = findViewById(R.id.reservedNamedId);
         B_Supprimer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 LinearLayout newlayout = (LinearLayout) findViewById(R.id.myLinearMain);
                 int childCountnew = newlayout.getChildCount();
                 //newlayout.getChildAt(childCountnew);
                 Log.i("TEST Nbre ENFANTS", String.valueOf(childCountnew));
 
                 //On supprime les champs Tel
-                if (childCountnew>7){
-                    newlayout.removeView(newlayout.getChildAt(childCountnew-3));
+                if (childCountnew > 7) {
+                    newlayout.removeView(newlayout.getChildAt(childCountnew - 3));
+                    I_Nbre--;
                 }
 
                 //On supprime le bouton
                 int childCountnew1 = newlayout.getChildCount();
-                if (childCountnew1==7){
+                if (childCountnew1 == 7) {
                     LinearLayout btnlayout = (LinearLayout) findViewById(R.id.numberNew);
                     newlayout.removeView(btnlayout);
+                    I_Nbre = 0;
                 }
-
             }
         });
     }
 
     // endregion
-
 
     //region Gestion du menu
     @Override
@@ -276,33 +313,182 @@ public class MainActivity extends AppCompatActivity
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("nbreUseAppli",I_Nbre);
-        outState.putString("nom",S_nom);
-        outState.putString("prenoms",S_prenoms);
-        outState.putString("date_naiss",S_dateNaiss);
-        outState.putInt("num_ville_naiss",I_NumVille);
-        outState.putInt("departement",I_NumDepartement);
 
+        outState.putInt("Nombre_Champ_Tel",I_Nbre);
+
+        // On parcourt le vertical layout contenant les horizontaux
+        // Pour chaque Layout horizontal, on teste les fils pour voir si Spinner ou EditText
+        // Enfin, on enregistre le contenu et leurs textes sont pris comme clés
+        layoutmain = findViewById(R.id.myLinearMain);
+        int childCountnew = layoutmain.getChildCount();
+        I_val = I_Nbre;
+
+        for (int i = 0; i < childCountnew; i++) {
+            ViewGroup v = (ViewGroup) layoutmain.getChildAt(i);
+            int nbrElem = v.getChildCount();
+
+            for (int j = 0; j < nbrElem; j++)  {
+                View v1 =  v.getChildAt(j);
+
+                //Cas EditText
+                if (v1 instanceof EditText) {
+                    EditText Txt = (EditText) v1;
+                    switch (Txt.getId()){
+                        case R.id.T_Nom :
+                            outState.putString(getString(R.string.TextNom),Txt.getText().toString());
+                            break;
+                        case R.id.T_Prenom :
+                            outState.putString(getString(R.string.TextPrenom),Txt.getText().toString());
+                            break;
+                        case R.id.T_Date :
+                            outState.putString(getString(R.string.TextDateNaiss),Txt.getText().toString());
+                            break;
+                        default:
+                            outState.putString(String.valueOf(I_val),Txt.getText().toString());
+                            I_val--;
+                            break;
+                    }
+                }
+
+                //Cas Spinner
+                else if (v1 instanceof Spinner){
+                    Spinner Sp = (Spinner) v1;
+                    if (Sp.getId() == R.id.SpinnerVilleNaiss){
+                        //Spinner departement
+                        outState.putInt(getString(R.string.TextVilleNaiss),Sp.getSelectedItemPosition());
+                    }
+                    outState.putInt(getString(R.string.TextDepartement),Sp.getSelectedItemPosition());
+                }
+
+            }
+        }
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        I_Nbre = savedInstanceState.getInt("nbreUseAppli");
-        I_NumDepartement = savedInstanceState.getInt("departement");
-        I_NumVille = savedInstanceState.getInt("num_ville_naiss");
-        S_dateNaiss = savedInstanceState.getString("date_naiss");
-        S_prenoms = savedInstanceState.getString("prenoms");
-        S_nom = savedInstanceState.getString("nom");
+        // On recupère le nombre de champs Tel
+        I_Nbre = savedInstanceState.getInt(" Nombre_Champ_Tel");
+        I_val = I_Nbre;
 
+        // On parcourt le vertical layout contenant les horizontaux
+        // Pour chaque Layout horizontal, on teste les fils pour voir si Spinner ou EditText
+        // Enfin, on restitue les contenu
+        // A la sortie des deux boucles, on ajpoute les numéros de Tel
+
+        layoutmain = findViewById(R.id.myLinearMain);
+        int childCountnew = layoutmain.getChildCount();
+
+        for (int i = 0; i < childCountnew; i++) {
+            ViewGroup v = (ViewGroup) layoutmain.getChildAt(i);
+            int nbrElem = v.getChildCount();
+
+            for (int j = 0; j < nbrElem; j++)  {
+                View v1 =  v.getChildAt(j);
+
+                //Cas EditText
+                if (v1 instanceof EditText) {
+                    EditText Txt = (EditText) v1;
+                    switch (Txt.getId()){
+                        case R.id.T_Nom :
+                            Txt.setText(savedInstanceState.getString(String.valueOf(R.string.TextNom)));
+                            break;
+                        case R.id.T_Prenom :
+                            Txt.setText(savedInstanceState.getString(String.valueOf(R.string.TextPrenom)));
+                            break;
+                            //La date
+                        default :
+                           Txt.setText(savedInstanceState.getString(String.valueOf(R.string.TextDateNaiss)));
+                            break;
+                    }
+                }
+
+                //Cas Spinner
+                else if (v1 instanceof Spinner){
+                    Spinner Sp = (Spinner) v1;
+                    if (Sp.getId() == R.id.SpinnerVilleNaiss){
+                        //Spinner departement
+                        Sp.setSelection(savedInstanceState.getInt(String.valueOf(R.string.TextVilleNaiss)));
+                    }
+                    Sp.setSelection(savedInstanceState.getInt(String.valueOf(R.string.TextDepartement)));
+                }
+
+            }
+        }
+
+        //Ajout des numéros
+        while (I_val > 0){
+            addNumero(savedInstanceState.getString(String.valueOf(I_val)));
+            I_val--;
+        }
     }
-
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.i("Lifecycle", "onDestroy method");
+    }
 
-    
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("Lifecycle", "onStop method");
+
+        // Preferences
+        SharedPreferences preferences = getSharedPreferences("DATA_SAVED", MODE_PRIVATE);
+        SharedPreferences.Editor editorPref = preferences.edit();
+
+        //Nbre de champs Tel
+        editorPref.putInt("Nombre_Champ_Tel", I_Nbre);
+        I_val = I_Nbre;
+
+        //Les autres champs
+        // On parcourt le vertical layout contenant les horizontaux
+        // Pour chaque Layout horizontal, on teste les fils pour voir si Spinner ou EditText
+        // Enfin, on enregistre le contenu et leurs textes sont pris comme clés
+        layoutmain = findViewById(R.id.myLinearMain);
+        int childCountnew = layoutmain.getChildCount();
+
+        for (int i = 0; i < childCountnew; i++) {
+            ViewGroup v = (ViewGroup) layoutmain.getChildAt(i);
+            int nbrElem = v.getChildCount();
+
+            for (int j = 0; j < nbrElem; j++) {
+                View v1 = v.getChildAt(j);
+
+                //Cas EditText
+                if (v1 instanceof EditText) {
+                    EditText Txt = (EditText) v1;
+                    switch (Txt.getId()) {
+                        case R.id.T_Nom:
+                            editorPref.putString(String.valueOf(R.string.TextNom), Txt.getText().toString());
+                            break;
+                        case R.id.T_Prenom:
+                            editorPref.putString(String.valueOf(R.string.TextPrenom), Txt.getText().toString());
+                            break;
+                        case R.id.T_Date:
+                            editorPref.putString(String.valueOf(R.string.TextDateNaiss), Txt.getText().toString());
+                            break;
+                        // dans ce acs, on a un champ num de Tel
+                        default:
+                            editorPref.putString(String.valueOf(I_val), Txt.getText().toString());
+                            I_val--;
+                            break;
+                    }
+                }
+
+                //Cas Spinner
+                else if (v1 instanceof Spinner) {
+                    Spinner Sp = (Spinner) v1;
+                    if (Sp.getId() == R.id.SpinnerVilleNaiss) {
+                        //Spinner departement
+                        editorPref.putInt(String.valueOf(R.string.TextVilleNaiss), Sp.getSelectedItemPosition());
+                    }
+                    editorPref.putInt(String.valueOf(R.string.TextDepartement), Sp.getSelectedItemPosition());
+                }
+
+            }
+        }
+        editorPref.apply();
     }
 
     @Override
@@ -321,24 +507,6 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         Log.i("Lifecycle", "onStart method");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i("Lifecycle", "onStop method");
-
-        // Preferences
-        SharedPreferences preferences= getSharedPreferences("DATA_SAVED", MODE_PRIVATE);
-        SharedPreferences.Editor editorPref= preferences.edit();
-        editorPref.putInt("nbreUseAppli",I_Nbre);
-        editorPref.putString("nom",S_nom);
-        editorPref.putString("prenoms",S_prenoms);
-        editorPref.putString("date_naiss",S_dateNaiss);
-        editorPref.putInt("ville_naiss",I_NumVille);
-        editorPref.putInt("departement",I_NumDepartement);
-
-        editorPref.apply();
     }
 
 }

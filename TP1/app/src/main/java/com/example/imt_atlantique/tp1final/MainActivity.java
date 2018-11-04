@@ -44,10 +44,12 @@ public class MainActivity extends AppCompatActivity
     private static Spinner spVilleNaiss, spDepartement;
     // Recuperation des textes des variables
     private static EditText T_nom;
+    private static int Nbre_Numero = 0;
     private static EditText T_prenom;
     private static EditText T_DateNaiss;
     private static Button B_Valider;
     private static LinearLayout layoutmain, l, layoutbtn;
+    private View.OnClickListener suppressionClick;
 
     //endregion
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Nbre_Numero = 0;
         //region  Recuperation des champs dans des variables globales
         // Spinner pour les villes et departements de naissance
         spDepartement = (Spinner) findViewById(R.id.SpinnerDepartement);
@@ -78,7 +81,16 @@ public class MainActivity extends AppCompatActivity
                         + spDepartement.getSelectedItem().toString(), Snackbar.LENGTH_LONG).show();
             }
         });
+
+        suppressionClick = new View.OnClickListener() {
+            public void onClick(View v) {
+                LinearLayout layoutSup = (LinearLayout)v.getParent();
+                layoutmain = findViewById(R.id.myLinearMain);
+                layoutmain.removeView(layoutSup);
+            }
+        };
     }
+
 
     //endregion
 
@@ -130,6 +142,7 @@ public class MainActivity extends AppCompatActivity
 
         l = new LinearLayout(this);
         l.setId(R.id.numberNew);
+        l.setTag(String.valueOf(Nbre_Numero+5));
         l.setLayoutParams(params);
         EditText number = new EditText (this);
         number.setHint(getString(R.string.TextNumber));
@@ -139,51 +152,26 @@ public class MainActivity extends AppCompatActivity
         l.addView(number);
         int childCount1 = layoutmain.getChildCount();
         layoutmain.addView(l,childCount1-2);
+        Nbre_Numero++;
 
         // Suppression
-        layoutbtn = (LinearLayout) findViewById(R.id.numberNew);
-        int childCount = layoutbtn.getChildCount();
-        if (childCount<=1){
             LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
-            params1.setMargins(20,20,20,20);
-            params.weight=4;
+            params1.setMargins(20,20,20,5);
             Button deleteBtn = new Button(this);
             deleteBtn.setEms(10);
             deleteBtn.setLayoutParams(params);
             // Give button an ID
             deleteBtn.setId(R.id.reservedNamedId);
+            deleteBtn.setOnClickListener(suppressionClick);
             deleteBtn.setText(getString(R.string.btnDeleteName));
-            layoutbtn.setLayoutParams(params1);
-            layoutbtn.addView(deleteBtn);
+
             // set the layoutParams on the button
             deleteBtn.setLayoutParams(params);
-        }
+            l.setLayoutParams(params1);
+            l.addView(deleteBtn);
 
-        final Button B_Supprimer = (Button) findViewById(R.id.reservedNamedId);
-        B_Supprimer.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                LinearLayout newlayout = (LinearLayout) findViewById(R.id.myLinearMain);
-                int childCountnew = newlayout.getChildCount();
-                //newlayout.getChildAt(childCountnew);
-                Log.i("TEST Nbre ENFANTS", String.valueOf(childCountnew));
-
-                //On supprime les champs Tel
-                if (childCountnew>7){
-                    newlayout.removeView(newlayout.getChildAt(childCountnew-3));
-                }
-
-                //On supprime le bouton
-                int childCountnew1 = newlayout.getChildCount();
-                if (childCountnew1==7){
-                    LinearLayout btnlayout = (LinearLayout) findViewById(R.id.numberNew);
-                    newlayout.removeView(btnlayout);
-                }
-
-            }
-        });
     }
 
     // endregion
