@@ -1,8 +1,5 @@
 package com.example.imt_atlantique.tp1final;
 
-
-//region Importations des librairies
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -11,27 +8,19 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.text.Layout;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-
-//endregion
 
 
 //region Activité principale
@@ -91,9 +80,7 @@ public class MainActivity extends AppCompatActivity
         };
     }
 
-
     //endregion
-
 
     //region  Remise à 0 des champs saisis
     public void remiseAzero(MenuItem item) {
@@ -171,11 +158,9 @@ public class MainActivity extends AppCompatActivity
             deleteBtn.setLayoutParams(params);
             l.setLayoutParams(params1);
             l.addView(deleteBtn);
-
     }
 
     // endregion
-
 
     //region Gestion du champ contenant la Date
 

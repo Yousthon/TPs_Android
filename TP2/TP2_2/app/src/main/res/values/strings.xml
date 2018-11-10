@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TP 1 : 1-1 ET 1-2</string>
+    <string name="app_name">TP 2 : 2-2</string>
     <string name="TextNom">Nom</string>
     <string name="TextPrenom">Prénom(s)</string>
     <string name="TextDateNaiss">Date de Naissance</string>
@@ -9,7 +9,7 @@
     <string name="TextDepartement">Departement</string>
     <string name="BtnValidateText">Validate</string>
     <string name="btnAddNumberText">Ajouter Votre Numero</string>
-        <string name="TextNumber">Numéro de Tel</string>
+    <string name="TextNumber">Numéro de Tel</string>
     <string name="btnDeleteName">Supprimer Votre Contact</string>
 
     <string-array name="villeNaiss">
