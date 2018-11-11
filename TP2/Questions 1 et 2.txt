@@ -25,10 +25,15 @@ Que se passe-t’il lorsque vous faites une rotation de l’écran ? Qu’en concluez v
 - C'est lorsque l'on ferme totalement l'application que le comptage redémarre.
 
 Question. Dans quel cas précis d’actions de l’utilisateur l’appel à cette méthode peut être utile ?
-- Quand l'activité est recréée ! 
+- Rotation ecran ! 
 
 Exercice
 Modifiez le code de l’activité Android qui compte (et affiche) le nombre de clicks à l’écran pour que le comptage soit correcte même s’il y a rotation de l’écran du dispositif.
 Maintenant au lieu de faire la rotation de l’écran appuyez sur le bouton back du dispositif (ou de l’émulateur).
 Question. Que se passe’il avec le compteur ? Qu’en concluez vous ?
 - Le code gère cette partie automatiquement
+
+Questions.
+- Tout marche sauf rotation écran qui efface les données
+
+http://tutos-android-france.com/sharedpreferences-2/ : stockage des arrayList

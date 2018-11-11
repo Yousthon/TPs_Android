@@ -1,9 +1,12 @@
 package com.example.imt_atlantique.tp1final;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +22,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.File;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,8 +68,10 @@ public class MainActivity extends AppCompatActivity
 
         //endregion
 
-        //region  Recuperation de l'état de l'instance si killed
+        final File dataDirectory = Environment.getDataDirectory();
+        Log.i("Lifecycle Chemin data", dataDirectory.getPath());
 
+        //region  Recuperation de l'état de l'instance si killed
         Log.i("Lifecycle", "Restauration des valeurs dans OnRestore");
 
         if(savedInstanceState == null) {
@@ -76,9 +86,16 @@ public class MainActivity extends AppCompatActivity
 
             //Restauration des numéros s'il y'en a
             Nbre_Numero = MyData.getInt("nbre_tel",0);
-            if (Nbre_Numero > 0)
-                for (int i = 0; i < Nbre_Numero; i++)
-                    addNum(MyData.getString("num" + i, ""));
+            if (Nbre_Numero > 0) {
+                L_Numeros = new ArrayList<>();
+                Gson gson = new Gson();
+                //désérialisation et recuperation de notre arraylist
+                L_Numeros = gson.fromJson(MyData.getString("liste_num",null),
+                        new TypeToken<ArrayList<String>>(){}.getType());
+                //Création des boutons avec les numéros
+                for (String values:L_Numeros)
+                    addNum(values);
+            }
         }
 
         //endregion
@@ -88,8 +105,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 // Toast.makeText(getApplicationContext(), T_Show, Toast.LENGTH_LONG).show();
 
-                Snackbar.make(findViewById(R.id.myRelativeLayout), "Vous êtes " + T_nom.getText().toString() +
-                        " " + T_prenom.getText().toString() + " né le " + T_DateNaiss.getText().toString()
+                Snackbar.make(findViewById(R.id.myRelativeLayout), "Vous êtes " + T_nom.getText().toString()
+                        +" " + T_prenom.getText().toString() + " né le " + T_DateNaiss.getText().toString()
                         + " à " + SP_VilleNaiss.getSelectedItem().toString() + " dans le departement de "
                         + SP_Departement.getSelectedItem().toString(), Snackbar.LENGTH_LONG).show();
             }
@@ -236,9 +253,11 @@ public class MainActivity extends AppCompatActivity
         editorPref.putInt("nbre_tel", Nbre_Numero);
         if (Nbre_Numero > 0) {
             saveNumero(L_Numeros = new ArrayList<>());
-            for (int i = 0; i<L_Numeros.size();i++)
-                editorPref.putString("num" + i, L_Numeros.get(i));
+            //Serialisation du ArrayList via la classe Gson de Google et sauvegarde
+            Gson gson = new Gson();
+            editorPref.putString("liste_num", gson.toJson(L_Numeros));
         }
+
         //Validation des changements
         editorPref.apply();
     }
@@ -337,10 +356,10 @@ public class MainActivity extends AppCompatActivity
                             getActivity(), year, month, day);
         }
     }
-
     //endregion
 }
 
 //endregion
+
 
 

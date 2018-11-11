@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.i("Lifecycle", "onCreate method");
+        final File dataDirectory = Environment.getDataDirectory();
+        Log.i("Lifecycle Chemin data", dataDirectory.getPath());
 
         // L'application (re)demarre
         if (savedInstanceState==null){
@@ -50,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        final File dataDirectory = Environment.getDataDirectory();
 
         B_Compteur = findViewById(R.id.btnCompteur);
         B_Compteur.setText(String.valueOf(I_nbClics) + S_text);
