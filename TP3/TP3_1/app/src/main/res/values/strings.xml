@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TP3</string>
+    <string name="TextQuestion">Veuillez saisir votre question</string>
+    <string name="Text_PoserQuestion">Poser votre question</string>
+    <string name="TextQuestionPosee">Question posée</string>
+    <string name="B_Reponse">Répondre</string>
+    <string name="Text_Welcometp3">Bienvenue dans le TP3 : Ici, nous parlons des \'Intent\'</string>
+    <string name="B_TP31">TP 3.1</string>
+    <string name="B_TP32">TP 3.2</string>
+    <string name="tp3_1_name">MENU TP3</string>
+</resources>

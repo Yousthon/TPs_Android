@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+        <TextView
+            android:id="@+id/TV_Question"
+            android:layout_margin="30dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TextQuestion"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+        <EditText
+            android:id="@+id/T_Question"
+            android:layout_margin="30dp"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:inputType="textMultiLine"
+            android:textSize="30sp" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+    <Button
+        android:id="@+id/B_PoserQuestion"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Text_PoserQuestion"
+        android:textAlignment="center"
+        android:onClick="poserQuestion"
+        android:textSize="20sp" />
+
+</LinearLayout>
