@@ -16,7 +16,7 @@ public class Welcome extends AppCompatActivity {
     }
 
     public void choisirTP31(View v){
-        startActivity(new Intent(getApplicationContext(), Reponse.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
     public void choisirTP32(View v){

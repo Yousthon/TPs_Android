@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_margin="20dp"
+    tools:context=".VoirNom">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/TextBtnVoirNom"
+        android:fontFamily="cursive"
+        android:textAlignment="center"
+        android:typeface="serif"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        style="@android:style/Widget.Holo.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="toto"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="cursive"
+        android:textSize="30dp"
+        android:typeface="serif" />
+    </LinearLayout>
