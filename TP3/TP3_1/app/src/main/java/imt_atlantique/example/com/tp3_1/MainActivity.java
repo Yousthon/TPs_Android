@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, msg);
         Toast myToast = Toast.makeText(getApplicationContext(),
                 "",Toast.LENGTH_LONG);
-
         //personalisation de notre toast
         myToast.setGravity(Gravity.CENTER_VERTICAL,0,-30);
         TextView tv = new TextView(this);

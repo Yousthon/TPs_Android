@@ -12,7 +12,7 @@ public class  VoirNom extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_nom);
 
-        TextView NOM = (TextView) findViewById(R.id.textView1);
+        TextView NOM = findViewById(R.id.textView1);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("NOM");

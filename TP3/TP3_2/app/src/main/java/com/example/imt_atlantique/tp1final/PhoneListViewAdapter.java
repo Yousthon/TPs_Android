@@ -66,7 +66,9 @@ public class PhoneListViewAdapter extends BaseAdapter implements ListAdapter {
                 Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + list.get(position)));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Log.i("Phone Call", String.valueOf(list.get(position)));
-                context.startActivity(intent);
+
+                if(intent.resolveActivity(context.getPackageManager()) != null)
+                    context.startActivity(intent);
             }
         });
         return view;

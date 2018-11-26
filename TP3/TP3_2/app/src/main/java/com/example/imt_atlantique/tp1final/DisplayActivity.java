@@ -30,11 +30,10 @@ public class DisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display);
 
         Intent intent = getIntent();
-        Gson gson = new Gson();
 
         if (intent != null) {
-            User user = gson.fromJson(intent.getStringExtra("user"), new TypeToken<User>(){}.getType());
-            Log.i("Stop ","");
+            User user = intent.getParcelableExtra("user");
+
             if (user != null) {
                 TextView nom = findViewById(R.id.Text_Nom);
                 nom.setText(user.nomUser);
@@ -52,24 +51,23 @@ public class DisplayActivity extends AppCompatActivity {
                 department.setText(user.departUser);
 
                 //les numéros
-                ArrayList<String> L_Numeros = user.numero;
-                if(L_Numeros!=null )
-                    if(L_Numeros.size()>0){
-                        PhoneListViewAdapter adapter = new PhoneListViewAdapter(L_Numeros, getApplicationContext());
+
+                if(user.numero != null )
+                    if (user.numero.size() > 0) {
+                        PhoneListViewAdapter adapter = new PhoneListViewAdapter(user.numero, getApplicationContext());
                         //handle listview and assign adapter
                         ListView listPhone = findViewById(R.id.list_Num);
                         listPhone.setAdapter(adapter);
                         setListViewHeightBasedOnChildren(listPhone);
-                    }
-                    else{
+                    } else {
                         TextView text = findViewById(R.id.Text_Num);
                         text.setText(R.string.Num_Tel_Saisi);
                     }
-
             }
         }
     }
 
+    //Pour étendre notre ListView
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {

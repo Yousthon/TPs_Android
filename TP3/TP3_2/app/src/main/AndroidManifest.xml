@@ -24,28 +24,37 @@
         </activity>
 
         <activity android:name=".DisplayActivity" />
-        <activity android:name=".VoirNom" >
+        <activity
+            android:name=".VoirNom"
+            android:label="VoirNom">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".DateActivity">
+        <activity
+            android:name=".DateActivity"
+            android:label="DateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".EditPrenom" >
+        <activity
+            android:name=".EditPrenom"
+            android:label="EditPrenom">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".DialNumber">
+        <activity
+            android:name=".DialNumber"
+            android:label="DIAL_ACTIVITY"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
                 <category android:name="android.intent.category.DEFAULT" />

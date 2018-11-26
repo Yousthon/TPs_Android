@@ -123,12 +123,9 @@ public class MainActivity extends AppCompatActivity {
                     saveNumero(L_Numeros = new ArrayList<>());
                     user = new User(name, prenom, date, ville, depart, L_Numeros);
                 }
+
                 // envoi de l'objet User dans l'intent
-
-                Gson gson = new Gson();
-
-                intent.putExtra("user", gson.toJson(user)); // la clé, la valeur
-                i("Stop Numeros sent", ""+L_Numeros.size());
+                intent.putExtra("user", user); // la clé, la valeur
                 startActivity(intent);
             }
         });
@@ -144,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
                     saveNumero(L_Numeros = new ArrayList<>());
 
                     //Serialisation puis envoi
-
                     intent.putStringArrayListExtra("liste_Num", L_Numeros);
                     startActivity(intent);
                 }
@@ -442,21 +438,24 @@ public class MainActivity extends AppCompatActivity {
         Intent sendintent = new Intent(Intent.ACTION_SEND);
         sendintent.putExtra(Intent.EXTRA_TEXT,ville_naiss);
         sendintent.setType("text/plain");
-        startActivity(Intent.createChooser(sendintent, "Send a simple text"));
+
+        if(sendintent.resolveActivity(getPackageManager()) != null)
+            startActivity(Intent.createChooser(sendintent, "Send a simple text"));
     }
     // endregion
 
     //creation intent_date
     public void choiceDate(View v){
         //Intent pagedate = new Intent(getApplicationContext(),DateActivity.class);
-        Intent pagedate = new Intent(getApplicationContext(), DateActivity.class);
-        pagedate.setAction(Intent.ACTION_PICK);
+        Intent pagedate = new Intent(Intent.ACTION_PICK);
         EditText madate = findViewById(R.id.T_Date);
         // call la page
         String str = madate.getText().toString().replace("/","");
         pagedate.putExtra("tadate",str);
         Log.i("Date",str);
-        startActivityForResult(pagedate,0 );
+
+        if(pagedate.resolveActivity(getPackageManager()) != null)
+            startActivityForResult(pagedate,0 );
 
     }
 
@@ -478,30 +477,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     //intent implicite pour voir le nom
     public void view_name(View v){
         String name =T_nom.getText().toString();
-        Intent sendintent = new Intent(getApplicationContext(), VoirNom.class);
-        sendintent.setAction(Intent.ACTION_VIEW);
+        Intent sendintent = new Intent(Intent.ACTION_VIEW);
         sendintent.putExtra("NOM",name);
-        startActivity(sendintent);
-
-
+        if(sendintent.resolveActivity(getPackageManager()) != null)
+            startActivity(sendintent);
     }
 
     public void edit_prenom(View v){
-
         EditText prenom = findViewById(R.id.T_Prenom);
         String name = prenom.getText().toString();
-        Intent sendintent = new Intent(getApplicationContext(), EditPrenom.class);
-        sendintent.setAction(Intent.ACTION_EDIT);
+        Intent sendintent = new Intent(Intent.ACTION_EDIT);
         sendintent.putExtra("PRENOM",name);
-        startActivityForResult(sendintent,4);
-
-
+        if(sendintent.resolveActivity(getPackageManager())!= null)
+            startActivityForResult(sendintent,4);
     }
-
 
     //endregion
 }

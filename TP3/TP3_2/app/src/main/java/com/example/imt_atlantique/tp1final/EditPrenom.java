@@ -17,13 +17,11 @@ public class EditPrenom extends AppCompatActivity {
         Intent intent = getIntent();
         String pren= intent.getStringExtra("PRENOM");
         prenom.setText(pren);
-
     }
-
 
     public void valider_prenom(View view){
 
-        EditText prenom = (EditText)findViewById(R.id.editText5);
+        EditText prenom = findViewById(R.id.editText5);
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         //Intent intent = new Intent();
         intent.putExtra("prenom_ok", prenom.getText().toString());

@@ -29,13 +29,12 @@ public class  User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel out, int flags) {
-
         out.writeString(nomUser);
         out.writeString(prenomUser);
         out.writeString(dateUser);
         out.writeString(villeUser);
         out.writeString(departUser);
-        out.writeArray(new ArrayList[]{numero});
+        out.writeList(numero);
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
@@ -54,6 +53,8 @@ public class  User implements Parcelable {
         dateUser = in.readString();
         villeUser = in.readString();
         departUser= in.readString();
-        numero = in.readArrayList(String.class.getClassLoader());
+
+        numero = new ArrayList<>();
+        in.readList(numero,null);
     }
 }
