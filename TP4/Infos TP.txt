@@ -1,0 +1,5 @@
+TP 4_1 et TP 4_2 : Internationalisation et Icones : Franckène
+TP 4_3 : Gestion des fragments
+https://stackoverflow.com/questions/13700798/basic-communication-between-two-fragments/32307876#32307876 
+https://inthecheesefactory.com/blog/fragment-state-saving-best-practices/en 
+

@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">TP 3-2</string>
+    <string name="TextNom">Name</string>
+    <string name="TextPrenom">Forename</string>
+    <string name="TextDateNaiss">Date of birth</string>
+    <string name="TextVilleNaiss">Town of birth</string>
+    <string name="TextBtnValider">Validate</string>
+    <string name="reset_action">Reset</string>
+    <string name="TextDepartement">Department</string>
+    <string name="BtnValidateText">Validate</string>
+    <string name="btnAddNumberText">New number</string>
+    <string name="btnAfficherNumberText">Your numbers</string>
+    <string name="TextNumber">Number</string>
+    <string name="btnDeleteName">Delete </string>
+    <string name="btnVoir">See</string>
+    <string name="btnEditPrenom">Edit </string>
+    <string name="btnEditDate">Edit </string>
+    <string name="chooser">chooser</string>
+    <string name="TextBtnCancel">Cancel</string>
+    <string name="TextBtnValiderDate">Validate</string>
+    <string name="TextBtnVoirNom">Your name is : </string>
+    <string name="TextBtnEditPrenom">Please enter your name</string>
+    <string name="textNumAffiche">Your number</string>
+    <string name="textNum">Your numbers</string>
+    <string name="textBtnCall">Call</string>
+    <string name="textResume">Summary of your informations</string>
+    <string name="text_vos_num">Your numbers</string>
+    <string name="Num_Tel_Saisi">You have not entered any number</string>
+    <string name="TextEtat_civil">Civil status</string>
+
+    <string-array name="villeNaiss">
+        <item>Brest</item>
+        <item>Paris</item>
+        <item>Man</item>
+        <item>Strasbourg</item>
+        <item>Nancy</item>
+        <item>Lyon</item>
+    </string-array>
+
+    <string-array name="departements">
+        <item>Côte d\'Armor</item>
+        <item>Finistère</item>
+        <item>Ille et Vilaine</item>
+        <item>Morbihan</item>
+    </string-array>
+
+</resources>
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- conteneur fragment vert -->
+    <fragment
+        android:id="@+id/fra"
+        class="imt_atlantique.example.com.tp_4_3.EditFragment"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- conteneur fragment bleu -->
+    <fragment
+        android:id="@+id/frag"
+        class="imt_atlantique.example.com.tp_4_3.DisplayFragment"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

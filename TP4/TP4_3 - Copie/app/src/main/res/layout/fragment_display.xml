@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:background="@color/colorOrange"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textViewAfficheNom"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
+        android:text="@string/T_affiche_Nom"
+        android:fontFamily="cursive"
+        android:textAlignment="center"
+        android:typeface="serif"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/TextNom"
+        android:background="@drawable/common_google_signin_btn_text_light_normal"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:inputType="text|textPersonName"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:typeface="serif" />
+
+</LinearLayout>

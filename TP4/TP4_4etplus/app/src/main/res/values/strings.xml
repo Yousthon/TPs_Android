@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">TP 4_4+</string>
+    <string name="TextNom">Nom</string>
+    <string name="TextPrenom">Prénom(s)</string>
+    <string name="TextDateNaiss">Date de Naissance</string>
+    <string name="TextVilleNaiss">Ville de Naissance</string>
+    <string name="TextBtnValider">Validate</string>
+    <string name="reset_action">Remise à zero</string>
+    <string name="TextDepartement">Departement</string>
+    <string name="BtnValidateText">Validate</string>
+    <string name="btnAddNumberText">Nouveau Numero</string>
+    <string name="btnAfficherNumberText">Vos Numéros</string>
+    <string name="TextNumber">Numéro de Tel</string>
+    <string name="btnDeleteName">Supprimer </string>
+    <string name="btnVoir">Voir</string>
+    <string name="btnEditPrenom">Edit </string>
+    <string name="btnEditDate">Edit </string>
+    <string name="chooser">chooser</string>
+    <string name="TextBtnCancel">Annuler</string>
+    <string name="TextBtnValiderDate">Valider</string>
+    <string name="TextBtnVoirNom">Votre Nom est : </string>
+    <string name="TextBtnEditPrenom">Veuillez Saisir Votre Prénom</string>
+    <string name="textNumAffiche">Votre Numero</string>
+    <string name="textNum">Vos Numéros</string>
+    <string name="textBtnCall">Appeler</string>
+    <string name="textResume">Résumé de vos Infos</string>
+    <string name="text_vos_num">Vos Numéros</string>
+    <string name="Num_Tel_Saisi">Vous n\'avez saisi aucun numéros</string>
+    <string name="TextEtat_civil">Etat Civil</string>
+    <string name="T_affiche_Nom">Votre nom est :</string>
+    <string name="Btn_validate">Send</string>
+
+    <string-array name="villeNaiss">
+        <item>Brest</item>
+        <item>Paris</item>
+        <item>Man</item>
+        <item>Strasbourg</item>
+        <item>Nancy</item>
+        <item>Lyon</item>
+    </string-array>
+
+    <string-array name="departements">
+        <item>Côte d\'Armor</item>
+        <item>Finistère</item>
+        <item>Ille et Vilaine</item>
+        <item>Morbihan</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
+
+
+

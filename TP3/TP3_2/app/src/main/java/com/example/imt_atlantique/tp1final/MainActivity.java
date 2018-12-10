@@ -454,8 +454,9 @@ public class MainActivity extends AppCompatActivity {
         pagedate.putExtra("tadate",str);
         Log.i("Date",str);
 
-        if(pagedate.resolveActivity(getPackageManager()) != null)
+          // if(pagedate.resolveActivity(getPackageManager()) != null)
             startActivityForResult(pagedate,0 );
+        Log.i("dateX", "oops");
 
     }
 

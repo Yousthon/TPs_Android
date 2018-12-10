@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TP_4_3</string>
+    <string name="Btn_validate">Send</string>
+    <string name="TextBtnEditPrenom">Entrez votre Nom</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="T_affiche_Nom">Votre nom est :</string>
+</resources>

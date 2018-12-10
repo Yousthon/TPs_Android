@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/myLinearMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Text_Nom"
+                android:layout_width="89dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/TextNom"
+                android:textSize="18dp"
+                />
+
+            <EditText
+                android:id="@+id/T_Nom"
+                android:layout_weight="3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/background_light"
+                android:ems="10"
+                android:hint="@string/TextNom"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorPrimaryDark"
+                android:tooltipText="@string/TextNom" />
+
+            <Button
+                android:id="@+id/Btn_voirNom"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnVoir"
+                android:drawableLeft="@android:drawable/ic_menu_view"
+                android:fontFamily="cursive"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"
+                style="@android:style/Widget.ActionButton.CloseMode" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Text_Prenom"
+                android:layout_width="89dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/TextPrenom"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/T_Prenom"
+                android:layout_weight="3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@android:color/background_light"
+                android:ems="10"
+                android:hint="@string/TextPrenom"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/Btn_editPrenom"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/btnEditPrenom"
+                android:textAlignment="center"
+                android:drawableLeft="@android:drawable/ic_menu_edit"
+                android:fontFamily="cursive"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"
+                style="@android:style/Widget.ActionButton.CloseMode"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Text_Date"
+                android:layout_weight="1"
+                android:layout_width="89dp"
+                android:layout_height="match_parent"
+                android:text="@string/TextDateNaiss"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/T_Date"
+                android:layout_width="210dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:hint="@string/TextDateNaiss"
+                android:inputType="date"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@android:color/background_light"
+
+                />
+
+            <Button
+                android:id="@+id/Btn_editDate"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnEditDate"
+                android:textAlignment="center"
+                android:drawableLeft="@android:drawable/ic_menu_edit"
+                android:fontFamily="cursive"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"
+                style="@android:style/Widget.ActionButton.CloseMode"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textVilleNaiss"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/TextVilleNaiss"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:id="@+id/SpinnerVilleNaiss"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:entries="@array/villeNaiss"
+                android:prompt="@string/TextVilleNaiss"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@android:color/background_light"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textDepartement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/TextDepartement"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:id="@+id/SpinnerDepartement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:entries="@array/departements"
+                android:prompt="@string/TextDepartement"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@android:color/background_light"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAddNumber"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/btnAddNumberText"
+                android:drawableLeft="@android:drawable/ic_input_add"
+                android:fontFamily="cursive"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/background_light"
+                android:textSize="30dp"
+                style="@android:style/Widget.ActionButton.CloseMode"/>
+
+            <Button
+                android:id="@+id/btnDialNumber"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/btnAfficherNumberText"
+                android:drawableLeft="@android:drawable/ic_menu_view"
+                android:fontFamily="cursive"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/background_light"
+                android:textSize="30dp"
+                style="@android:style/Widget.ActionButton.CloseMode"
+                />
+
+            <Button
+                android:id="@+id/btnValidate"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/BtnValidateText"
+                android:drawableLeft="@android:drawable/ic_menu_save"
+                android:fontFamily="cursive"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/background_light"
+                android:textSize="30dp"
+                style="@android:style/Widget.ActionButton.CloseMode"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
